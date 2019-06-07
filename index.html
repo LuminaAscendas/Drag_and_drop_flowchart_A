@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <title>Drag and drop flowchart</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="HandheldFriendly" content="true" />
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/preloader.js"></script>
+        <script src="js/activity.js"></script>
+        
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+<style type="text/css">
+.dragImg{
+ width:115px;
+ height:70px;
+ opacity:0;
+}
+#dragSpot_1  > span{
+  background-image: url("images/drag_1.png");
+}
+
+#dragSpot_2  > span{
+  background-image: url("images/drag_2.png");
+}
+
+#dragSpot_3  > span{
+  background-image: url("images/drag_3.png");
+}
+
+#dragSpot_4  > span{
+  background-image: url("images/drag_4.png");
+}
+
+#dragSpot_5  > span{
+  background-image: url("images/drag_5.png");
+}
+
+#dragSpot_6  > span{
+  background-image: url("images/drag_6.png");
+}
+
+#dragSpot_7  > span{
+  background-image: url("images/drag_7.png");
+}
+
+#dragSpot_8  > span{
+  background-image: url("images/drag_8.png");
+}
+
+#dragSpot_9  > span{
+  background-image: url("images/drag_9.png");
+}
+
+</style>
+
+
+</head>
+<body>
+	<!-- <div role='main' style='display:none'></div>
+	<div role='navigation' style='display:none'></div>
+	<a href="#begin_container" id='linkId' >Skip to main content</a> -->
+
+	<div role='main' style='display:none'></div>
+	<div role='navigation' style='display:none'></div>
+	<a href="#midDivBegin" id='linkId' >Skip to main content</a>
+	<div class="mainContainer" id='mainContainer'>
+		<div class="loadDiv">
+			<div class="loader"></div>
+		</div>
+		 <div class="beginPage">
+			<div id='begin_focus' role='none'></div>
+			<div id="midDivBegin">
+				<div class="slideImgBegin">
+					<img class="biganImg" id="begin_biganImg" role='img' alt='Flow chart'>
+				</div>
+				<div class="beginBtn" role='button' id='begin_btn' aria-label='Begin'>Begin</div>
+			</div>
+			<div id='begin_end_focus' role='none'></div> 
+		</div> 
+        <div class="nextPage">
+			<div id='next_focus' role='none'></div>
+			<div id='text_Div'>
+				<h1 class="directionTextStart" role='heading' aria-level='1'>
+						<span class="directionStart tabindex">Directions:</span>
+						<span class="dirTextStart tabindex" >Click the "Next" button below to access an interactive drag and drop version of this graphic, which will help reinforce the concepts you have been studying.</span>
+				</h1>
+				<div class="titleText" id="next_titleText" role='heading' aria-level='2'>Mobility of Pesticides in the Environment</div>
+			</div>
+			<div id='responsive_container'>
+				<div id="midDivNext">
+					<div class="slideImgBegin">
+						<img class="biganImg" id="next_biganImg" role='img' alt='Flow chart'>
+					</div>
+					<div class="nextBtn" role='button' id="next_btn" aria-label='Next'>Next</div>
+				</div>
+			</div>
+			<div id='next_end_focus' role='none'></div> 
+        </div>
+         <div id="pageContainer">
+			<div id='activity_focus' role='none'></div>
+			
+			<div id='text_Div1'>
+				<h1 class="activityQuestion" role='heading' aria-level='3'>
+					<span class="direction tabindex"></span>
+					<span class="directionText tabindex"></span>
+				</h1>
+				<div class="titleText tabindex" id='activity_title' role='heading' aria-level='4'>Mobility of Pesticides in the Environment</div>
+			</div>
+			 <div class="contain1"></div> 
+			<div id='responsive_container1'>
+				<div class="contain">
+						<div class="quizeSection">  
+							<div class="droppables"></div>
+						</div>
+						  <div class="footer hide">
+							<!-- <button type="button" id="naviLeft" class="leftArrowDisable tabindex"></button> -->
+							<div class="draggable" role='none'></div>
+							<!-- <button type="button" id="naviRight" class="rightArrowDisable tabindex"></button> -->
+						 </div>
+				</div>
+				<div class="feedbacks">
+					<div class="button hideCompleteScheme tabindex hide" id='feedbacks_hide_btn' role='button'>Hide Graphic</div>
+					<div class="button resetdesable reset tabindex" id='feedbacks_reset' role='button'>Reset</div>
+					<div class="button viewCompleteScheme tabindex" id='feedbacks_view_graphic' role='button'>View Graphic</div>
+					<div class="button begin tabindex">Begin</div>
+				</div>
+            </div>
+			
+            <div class="popupContainer hide">
+				<div id='popup_focus' role='none'></div> 
+					<div class="popup">
+						<p id='popup_txt' class="tabindex" role='none'></p>
+						<div id='close-btn' class="close-btn tabindex" role='button' aria-label='Close'><span>Close</span></div>
+					</div>
+				<div id='popup_end_focus' role='none'></div> 
+				<div class="patch"></div>
+            </div>
+			<div id='activity_end_focus' role='none'></div>
+        </div>
+      </div>
+	  <script src="js/fitToScreen.js"></script>
+    </body>
+</html>
