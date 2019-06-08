@@ -795,6 +795,14 @@ left: -22px !important;
   top: 70px;
   width: 168px;
 }
+.popupContainer{
+    background: rgba(0, 0, 0, 0.12) none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
 .popup {
   background: #ffffff none repeat scroll 0 0;
   border: 1px solid #007098;
@@ -810,8 +818,8 @@ left: -22px !important;
   margin: auto;
   padding: 16px;
   position: relative;
-  top: -80px;
-  width: 399px;
+	top: 50%;
+    max-width: 399px;
   z-index: 50;
 }
 .close-btn {
@@ -833,12 +841,12 @@ left: -22px !important;
   width: 0;
 }
 .patch {
-  background: rgba(0, 0, 0, 0.12) none repeat scroll 0 0;
+ /*  background: rgba(0, 0, 0, 0.12) none repeat scroll 0 0;
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 100%; */
 }
 
 #linkId{
