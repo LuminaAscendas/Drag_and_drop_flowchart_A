@@ -87,7 +87,7 @@ var popup=false;
 		
 		 if( /Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent) ) {
 			$('.directionTextStart,.titleText,.activityQuestion').attr('role','text');
-		}else {$('.directionTextStart,.titleText,.activityQuestion').attr('role','heading');} 
+		}else {$('.titleText').attr('role','none');} 
 		$(".biganImg").mouseenter(function(){
 			if(!begin_entered) $(".biganImg ").attr("title","Flow Chart");
 			else $(".biganImg ").attr("title","Flow Chart");
@@ -112,6 +112,7 @@ var popup=false;
     }
 
     function fnBegin(){
+		$('a').attr('href','#next_btn');
 	console.log("ssdfdsf'")
 		begin_entered=true;
 		next_page=false;
@@ -133,6 +134,7 @@ var popup=false;
     }
 
     function fnnextBtn(){
+		$('a').attr('href','#feedbacks_view_graphic');
 		next_page=true;
 		//setTimeout(function(){
 			$("#pageContainer").fadeIn(500);
