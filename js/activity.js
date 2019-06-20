@@ -49,12 +49,14 @@ var popup=false;
 			$('.tabindex').eq(1).focus();	
 		})
 		$('#begin_end_focus').on('focus',function(){
+			
 			$('.tabindex').eq(1).focus();
 		})
 		$('#next_focus').on('focus',function(){
 			$('.tabindex').eq(1).focus();	
 		})
 		$('#next_end_focus').on('focus',function(){
+			
 			$('.tabindex').eq(1).focus();
 		})
 		$('#activity_focus').on('focus',function(){
@@ -74,7 +76,12 @@ var popup=false;
 		})
 		
 		document.body.onkeyup = function(e){
+			
+			
 			if(e.keyCode == 32 || e.keyCode == 13){
+				
+				console.log(e.target.id);
+				
 				e.preventDefault(e);
 				if(e.target.id!='label_head_1'||e.target.id!='label_head_2'||e.target.id!='label_head_3'){
 					$('#'+e.target.id).trigger('click');
@@ -95,7 +102,6 @@ var popup=false;
 		$(".biganImg").mouseleave(function() {
 			$(".biganImg").removeAttr('title');
 		});
-		
    });
 
     function shuffle(array) {
@@ -126,11 +132,15 @@ var popup=false;
         //$('.titleText').css('top','97px').css('left','61px');
         set_tabindex();
 		if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) ||/Edge\/\d./i.test(navigator.userAgent)) {
-			$('#mainContainer').removeAttr('role');
+			$('#mainContainer').attr('role','application');
+			//$('#mainContainer').removeAttr('role');
 		}else{
 			$('#mainContainer').attr('role','application');
 		}
+		
 		resizeApp();
+		
+		
     }
 
     function fnnextBtn(){
@@ -142,8 +152,15 @@ var popup=false;
 		
         $(".nextPage").hide();
         $("#begin_page").hide();
+		
+		// Here to add tab code
+		$(".dropspot").attr('data-val','false');	
+		$(".dropspot").unbind().bind('keydown', handleDragByKey);
+		
         $('.mainContainer').css('height','862px');
        // $('.titleText').css('top','86px').css('left','49px');
+	   
+	   
         set_tabindex();
 		resizeApp();
     }
@@ -165,6 +182,7 @@ var popup=false;
         $(".directionText").append(data[0].directionTextBegin);
         $(".footNote").append(data[0].foootNote);
         $(".popup > p").append(data[0].popupShow);
+        $(".popup > p").attr('aria-label', data[0].popupShow);
 
         CorrectOptionArray = data[0].CorrectOptionArray;
         OptionArray = data[0].OptionArray;
@@ -173,6 +191,7 @@ var popup=false;
         // console.log('CorrectOptionArray : ',repeatedOption);
         
         OptionArray=shuffle(OptionArray); // Shuufle Arrray
+        OptionArray=shuffle(dropBoxName); // Shuufle Arrray
 
          // -----------------Set DropAble Area---------//  
          for (var i = 0; i < CorrectOptionArray.length; i++) {
@@ -185,7 +204,7 @@ var popup=false;
                   tempRepeteddVal=i;
                 }
                 
-              DropSet += '<div id="dropSpot_' + i + '" class="droparea dropactive dropspot" data-repeated-id="'+tempRepeteddVal+'"><div class="activtedAnswers"></div></div>';
+              DropSet += '<div id="dropSpot_' + i + '" class="droparea dropactive dropspot" data-repeated-id="'+tempRepeteddVal+'" aria-label="'+dropLabelText[0]+'" role="none"><div class="activtedAnswers"></div></div>';
           // }
         }
       
@@ -193,12 +212,12 @@ var popup=false;
         var firstFrameDragElement=3;
          DragSet += '<div class="frame headerFrame'+j+'">'; 
 
-           for (var i = 0; i < OptionArray.length; i++) { 
+           for (var i = 0; i < dropBoxName.length; i++) { 
             
-            console.log('j : ',j);
-            console.log('OptionArray : ',OptionArray.length);
+            //console.log('j : ',j);
+            //console.log('OptionArray : ',OptionArray.length);
 
-                  DragSet += '<div id="dragSpot_' + i + '_td" class="dragSpotWrapper" role="none"><div id="dragSpot_' + OptionArray[i] + '" class="dragbox normal box dragSpot" value="' + OptionArray[i] + '">'+'<span><img role="img" alt="'+data[0].ariaLabel[OptionArray[i]-1]+'" class="dragImg" src="'+data[0].drag_images[OptionArray[i]-1]+'"></span>'+'</div></div>';
+                  DragSet += '<div id="dragSpot_' + i + '_td" class="dragSpotWrapper" role="none" aria-label="'+dropBoxName[i].ariLa+'"><div id="dragSpot_' + dropBoxName[i].Text_id + '" class="dragbox normal box dragSpot" value="' + dropBoxName[i].Text_id + '">'+'<span class="textImg dragImg">'+dropBoxName[i].Text_name+'</span>'+'</div></div>';
        
         console.log('i =========== : ',i);
        
@@ -247,8 +266,12 @@ var popup=false;
             start: function(event, ui) {      
                 dropHover = false;
                 DragID = $(this).attr("id");
+				
+				
                 tempParent=$('#'+DragID).parent()
-                // tempParent=$(abc).attr('id')
+                
+				//console.log('DragID', DragID, 'tempParent', tempParent);
+				// tempParent=$(abc).attr('id')
              
              },
             appendTo: $('.quizeSection'), 
@@ -313,9 +336,13 @@ var popup=false;
                $(this).css("border", "none");
                   var  data_repeated_arr = data_repeated_id.split(',');
 
+				  console.log("htoihwTEOPI ", data_repeated_arr, dragValue);
+				  
+				  
                   for(var i=0 ; i< data_repeated_arr.length;i++){
                       if(dragValue==data_repeated_arr[i])
-                           { 
+						   { 
+							
                           $('.reset').removeClass('resetdesable');
 
                              // tempParent=$('#'+DragID).parent()
@@ -325,11 +352,13 @@ var popup=false;
                              $("#" + DragID).addClass('dropFilled')
                               var numId = DragID.match(/\d+/);
                               $('#'+DragID+' > span').css('background-image','url("images/drop_'+numId+'.png")');
+                             // $('#'+DragID+' > span').css('width','242px');
+							  $('#'+DragID+' > span').html('');
                              
                               autoUpdatedDragBox(); 
                           }
                   }
-
+					console.log('DragID', DragID);
                 AnsDropped[Number(DragID.replace("dragSpot_", ""))] = DragID;
 
                   $('#'+DropID).removeProp('background');
@@ -434,7 +463,7 @@ var popup=false;
               });
    
         // });
-
+		
 }
     function ResetFun() {
         
@@ -476,14 +505,15 @@ var popup=false;
                 
             // $(".begin").hide(); 
             $(".droppables > div").empty();
-            $(".droparea").each(function(index) 
-              {
+            $(".droparea").each(function(index){
                 $("#dropSpot_" + index).removeClass('active').addClass('dropactive');
                 // $("#dropSpot_" + index).css('background','none');
-              });  
+            });
+			// here to add tab index click function
+			$(".dropspot").attr('data-val','false');	
+			$(".dropspot").unbind().bind('keydown', handleDragByKey);			
 
-        
-
+			
     }
 
 function animEffectToAll()
@@ -519,8 +549,11 @@ function animEffectToAll()
              lastFrame = $('.draggable > div').last();
              lastFrameDragSpot = $(lastFrame).children().first();
 
+			 //console.log('lastFrameDragSpot', lastFrameDragSpot);
+			 
+			 
              currentFrame = $(tempParent).parent();
-             // console.log('currentFrame>>>>>',currentFrame)
+             //console.log('currentFrame>>>>>',currentFrame)
              $(tempParent).remove();
 
              if (!(($(lastFrame).attr('class')) == ($(currentFrame).attr('class')))) {
@@ -549,9 +582,9 @@ function animEffectToAll()
              lastFrame = $('.draggable > div').last();
 
 
-             if (($(lastFrame).attr('class')) == ($(currentFrame).attr('class'))) {
+            if (($(lastFrame).attr('class')) == ($(currentFrame).attr('class'))) {
              $('#naviRight').addClass('rightArrowDisable');
-     }  
+			}  
 
 }
 
@@ -666,35 +699,119 @@ function fnCheckNextBack() {
 			$('.tabindex').removeClass('tabindex').removeAttr('tabindex');
 			$('.activityQuestion').addClass('tabindex');
 			$('#activity_title').addClass('tabindex');
+			
+			
+			$('.droparea').addClass('tabindex');
 			$('.dragSpotWrapper').addClass('tabindex');
+			
+			
 			$('.reset').addClass('tabindex');
 			$('.viewCompleteScheme').addClass('tabindex');
 			$('.hideCompleteScheme').addClass('tabindex');
-			
-			
-			
-			
-			
 			
 			$('#activity_focus,#activity_end_focus').addClass('tabindex');
 		} 
 		$('.tabindex').each(function(){
 				$('.tabindex').attr('tabindex','0');
 		});
-		
-	
-            /* var tab_index=1;
-            $(".tabindex").each(function(index){
-                $(this).removeAttr("tabindex");
-                    $(this).attr("tabindex",tab_index);
-                    tab_index++;
-                // }
-            }); */
-
      }
+
+/******************************************************************************************************************************/
+	
+	//Tab access codding
+
+    var prevDroppedItem = '';
+	var dropSpotPosition="";
+    function handleDragByKey(event) {
+        if (event.type == "keydown" && event.keyCode != 13 && event.keyCode != 32) {
+            return true;
+			//alert();
+        }
+        event.preventDefault();
+	
+		prevDroppedItem = '';
+        dropSpotPosition = (this).id;
+        
+		//console.log('dropSpotPosition', dropSpotPosition);
+		
+		
+        $('.dropspot').each(function(index) {
+			$(".dragSpotWrapper").unbind('keydown').bind('keydown', handleDropByKey);
+        });
+		
+		$(".headerFrame" + nSlideCounter + " .dragSpotWrapper").first().focus();
+    }
+	var draggedValueAttr;
+	var droppedValueAttr;
+	var childDivid;
+	var ariaLabelValue;
+    function handleDropByKey(event) {
+        if (event.type == "keydown" && event.keyCode != 13 && event.keyCode != 32) {
+            return true;
+
+        }
+        	event.preventDefault(); 
+			var idVal=event.target.id
+			console.log(idVal);
+			ariaLabelValue=$('#'+idVal).attr('aria-label');
+			
+			
+			$('#'+idVal+' > div').map(function() {
+				childDivid= this.id;
+				draggedValueAttr=$('#'+childDivid).attr('value');
+			});
+			
+			tempParent=$("#"+childDivid).parent();
+			
+			droppedValueAttr=$("#"+dropSpotPosition).attr('data-repeated-id');
+			if(draggedValueAttr==droppedValueAttr){
+					
+				
+                $('.reset').removeClass('resetdesable');
+                $("#"+dropSpotPosition).append($("#" + childDivid));
+                $("#"+dropSpotPosition).removeClass('dropactive');
+                $("#" + childDivid).addClass('dropFilled')
+                var numId = childDivid.match(/\d+/);
+                $('#'+childDivid+' > span').css('background-image','url("images/drop_'+numId+'.png")');
+                $('#'+childDivid+' > span').html('');
+				autoUpdatedDragBox(); 
+				$("#" + childDivid).addClass('dragSuccess');			
+				$("#" + dropSpotPosition).attr('data-val','true');			
+				
+				
+				
+				
+				
+				
+				$("#"+dropSpotPosition).attr('aria-label',ariaLabelValue);
+				
+			
+				$(".droparea[data-val='false']").first().focus();
+				
+  				if (CorrectOptionArray.length == $('.droppables .dragbox').length) {
+                      // $('.reset').removeClass('resetdesable');
+                      $('.popupContainer').show();
+					  popup=true;
+					 set_tabindex();	
+                 }
+				
+			}else{
+						
+				$('#'+childDivid+' > span').css('color','red').fadeIn(1000);
+				
+				setTimeout(function(){
+					$('#'+childDivid+' > span').css('color','#000').fadeIn();
+				},500)
+				
+			}
+    }
+
 	
 	
 	
-/* 	
-})(App = App || {})
-var App; */
+	
+
+/******************************************************************************************************************************/	
+	 
+	 
+	 

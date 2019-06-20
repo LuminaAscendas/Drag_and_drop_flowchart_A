@@ -33,6 +33,13 @@ body {
     
     font-size: 14px;
 }
+.dragImg{
+	color:#000;
+ 	font-family: 'SourceSansPro-Regular';
+ 	font-size:13px;
+	
+}
+
 
 .dirTextStart{
   font-size: 14px;
@@ -332,7 +339,7 @@ top:140px;
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: contain;
-  display: block;
+  /* display: block; */
   height: inherit;
 }
 
@@ -517,6 +524,7 @@ button:focus {
   text-align: center;
   width: 88px;
   background: transparent;
+
 }
 
 .dragSpotWrapper .box > span{
@@ -780,6 +788,7 @@ left: -22px !important;
   margin: 2px 0px;
   position: relative;
   width: 20%;
+  vertical-align: top;
 }
 .dragbox {
   background: #fff none repeat scroll 0 0;

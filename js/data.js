@@ -20,3 +20,20 @@ var data = [{"headTitle":"Drag and drop flowchart",
 "drag_height":65,
 "dropx":[165,157,140,139,233,445,457,446,407],
 "dropy":[139,185,260,306,412,137,224,288,432]}]
+
+
+
+var dropBoxName = [ {Text_name:"Ground",Text_id:"1",ariLa:"Ground"},
+					{Text_name:"Ocean, marine organisms, and ocean sediments", Text_id:"2", ariLa:"Ocean, marine organisms, and ocean sediments"},
+					{Text_name:"Aquatic organisms and fresh water", Text_id:"3", ariLa:"Aquatic organisms and fresh water"},
+					{Text_name:"Agricultural soil", Text_id:"4", ariLa:"Agricultural soil"},
+					{Text_name:"Food plants", Text_id:"5", ariLa:"Food plants"},
+					{Text_name:"Humans", Text_id:"6", ariLa:"Humans"},
+					{Text_name:"Animals", Text_id:"7", ariLa:"Animals"},
+					{Text_name:"Target pest", Text_id:"8", ariLa:"Target pest"},
+					{Text_name:"Crops and livestock", Text_id:"9", ariLa:"Crops and livestock"}
+				];
+
+				
+var dropLabelText =['To select the box by using space bar or enter key']				
+				
