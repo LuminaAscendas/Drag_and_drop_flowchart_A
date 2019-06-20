@@ -31,8 +31,8 @@ var popup=false;
         });
         
         init();
-         $("#pageContainer").hide();
-         $(".nextPage").hide();
+        $("#pageContainer").hide();
+        //$(".nextPage").hide();
         set_tabindex();  
         $(document).bind("keydown mousedown",enable_scorm);
         $("#naviLeft").bind("click keyup",fnBack);
@@ -42,7 +42,7 @@ var popup=false;
         startActivity(); 
           $('.mainContainer').css('height','680px');
           $(".beginBtn").bind("click",fnBegin);
-          $(".nextBtn").bind("click",fnnextBtn);      
+         // $(".nextBtn").bind("click",fnnextBtn);      
 		
         
 		$('#begin_focus').on('focus',function(){
@@ -52,13 +52,13 @@ var popup=false;
 			
 			$('.tabindex').eq(1).focus();
 		})
-		$('#next_focus').on('focus',function(){
+/* 		$('#next_focus').on('focus',function(){
 			$('.tabindex').eq(1).focus();	
 		})
 		$('#next_end_focus').on('focus',function(){
 			
 			$('.tabindex').eq(1).focus();
-		})
+		}) */
 		$('#activity_focus').on('focus',function(){
 			$('.tabindex').eq(1).focus();	
 		})
@@ -118,17 +118,39 @@ var popup=false;
     }
 
     function fnBegin(){
-		$('a').attr('href','#next_btn');
+		//$('a').attr('href','#next_btn');
 	console.log("ssdfdsf'")
 		begin_entered=true;
-		next_page=false;
-		$("#pageContainer").hide();
+		//next_page=false;
+		//$("#pageContainer").hide();
 		//setTimeout(function(){
-			$(".nextPage").fadeIn(500);
+			//$(".nextPage").fadeIn(500);
 		//},1000)
         
         $(".beginPage").hide();
-        $('.mainContainer').css('height','680px');
+        
+		/**************************************/
+		
+		$('a').attr('href','#feedbacks_view_graphic');
+		next_page=true;
+		//setTimeout(function(){
+			$("#pageContainer").fadeIn(500);
+		//},1000)
+		
+        //$(".nextPage").hide();
+        $("#begin_page").hide();
+		
+		// Here to add tab code
+		$(".dropspot").attr('data-val','false');	
+		$(".dropspot").unbind().bind('keydown', handleDragByKey);
+		
+        $('.mainContainer').css('height','862px');
+       // $('.titleText').css('top','86px').css('left','49px');
+		
+		
+		/*************************************************************************/
+		
+		//$('.mainContainer').css('height','680px');
         //$('.titleText').css('top','97px').css('left','61px');
         set_tabindex();
 		if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) ||/Edge\/\d./i.test(navigator.userAgent)) {
@@ -143,7 +165,7 @@ var popup=false;
 		
     }
 
-    function fnnextBtn(){
+    /* function fnnextBtn(){
 		$('a').attr('href','#feedbacks_view_graphic');
 		next_page=true;
 		//setTimeout(function(){
@@ -163,7 +185,7 @@ var popup=false;
 	   
         set_tabindex();
 		resizeApp();
-    }
+    } */
 
     function init() {
        // $('.reset').off('keyup')
