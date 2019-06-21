@@ -147,13 +147,16 @@ body {
     z-index: 9999;
 }
 .loader {
-    position: absolute;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background: url('../images/loading.gif') 50% 50% no-repeat;
-    background-color: none;
-    z-index: 10000;
+position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    width: 50px;
+    height: 51px;
+    z-index: 9999;
+    background: url(../images/loading.gif) 50% 50%/100% 100% no-repeat rgb(249,249,249);
 }
 .mainContainer {
   border: 0px solid;
