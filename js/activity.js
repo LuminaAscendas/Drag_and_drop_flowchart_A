@@ -818,11 +818,17 @@ function fnCheckNextBack() {
                  }
 				
 			}else{
-						
+						console.log(childDivid);
 				$('#'+childDivid+' > span').css('color','red').fadeIn(1000);
 				
+                $('#'+childDivid).parent().attr('aria-label','Wrong')//.blur();
+				$('#'+childDivid).parent().blur()
+                setTimeout(function(){
+                    $('#'+childDivid).parent().focus();
+                },10)
 				setTimeout(function(){
 					$('#'+childDivid+' > span').css('color','#000').fadeIn();
+					$('#'+childDivid).parent().attr('aria-label',$('#'+childDivid).text())
 				},500)
 				
 			}
